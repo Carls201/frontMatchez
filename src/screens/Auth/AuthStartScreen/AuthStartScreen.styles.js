@@ -1,0 +1,30 @@
+import { Container } from 'native-base';
+import { StyleSheet } from 'react-native'
+
+export const styles = new StyleSheet.create({
+    content: {
+        flex: 1,
+        margin: 20,
+        justifyContent: "space-between"
+    },
+    img: {
+        width: "100%",
+        height: 400,
+        resizeMode: "contain",
+        marginVertical: 50
+    },
+    title: {
+        color: "#fff",
+        textAlign: 'center',
+        fontSize: 28,
+        fontWeight: "bold",
+        marginBottom: 20
+    },
+    btn: {
+        color: "#0891b2",
+        fontWeight: "600",
+        fontSize: 22,
+        textAlign: "center",
+        marginVertical: 40,
+    }
+});
