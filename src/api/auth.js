@@ -1,5 +1,5 @@
-import { ENV } from "../utils";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { ENV } from "../utils";
 
 export class Auth {
     async register(nick, correo, password, id_rol) {
@@ -53,7 +53,7 @@ export class Auth {
         await AsyncStorage.setItem(ENV.JWT.ACCESS, token)
     }
 
-    async getAccessToken(token){
+    async getAccessToken(){
         return await AsyncStorage.getItem(ENV.JWT.ACCESS)
     }
 
