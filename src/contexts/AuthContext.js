@@ -39,7 +39,14 @@ export function AuthProvider(props) {
     }, [])
 
     const reLogin = async (refreshToken) => {
-        console.log('RELOGIN')
+        try {
+            const {accessToken} = await authController.refreshAccessToken(refreshToken)
+
+            await authController.setAccessToken(accessToken)
+            await login(accessToken)
+        } catch (error) {
+            console.error(error)
+        }
     };
 
     const login = async (accessToken) => {
@@ -57,11 +64,16 @@ export function AuthProvider(props) {
     };
 
     const logout = () => {
-        console.log("LOGOUT....")
+        setUser(null)
+        setToken(null)
+        authController.removeTokens()
     };
 
     const updateUser = (key, value) => {
-        //TODO
+        setUser({
+            ...user,
+            [key]: value,
+        })
     }
 
     const data = {

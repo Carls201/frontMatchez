@@ -8,9 +8,9 @@ export class Auth {
             const params = {
                 method: "POST",
                 headers: {
-                    "Content-Type":"application/json",
+                    "Content-Type": "application/json",
                 },
-                body: JSON.stringify({nick, correo, password, id_rol})
+                body: JSON.stringify({ nick, correo, password, id_rol })
             }
             const response = await fetch(url, params);
             const result = await response.json();
@@ -25,19 +25,19 @@ export class Auth {
 
     async login(correo, password) {
         try {
-            const url =  `${ENV.API_URL}/${ENV.ENDPOINTS.AUTH.LOGIN}`;
+            const url = `${ENV.API_URL}/${ENV.ENDPOINTS.AUTH.LOGIN}`;
             const params = {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
                 },
-                body: JSON.stringify({correo, password})
+                body: JSON.stringify({ correo, password })
             };
 
             const response = await fetch(url, params);
             const result = await response.json();
 
-            if(response.status !== 200) throw result;
+            if (response.status !== 200) throw result;
 
             return result;
         } catch (error) {
@@ -45,27 +45,46 @@ export class Auth {
         }
     }
 
-    async refreshAccessToken(refreshToken){
-        //TODO
+    async refreshAccessToken(refreshToken) {
+        try {
+            const url = `${ENV.API_URL}/${ENV.ENDPOINTS.AUTH.REFRESH_ACCESS_TOKEN}`
+            const params = {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    refreshToken,
+                })
+            }
+            const response = await fetch(url, params)
+            const result = await response.json()
+
+            if(response.status !== 200) throw result
+
+            return result
+        } catch (error) {
+            throw error
+        }
     }
 
-    async setAccessToken(token){
+    async setAccessToken(token) {
         await AsyncStorage.setItem(ENV.JWT.ACCESS, token)
     }
 
-    async getAccessToken(){
+    async getAccessToken() {
         return await AsyncStorage.getItem(ENV.JWT.ACCESS)
     }
 
-    async setRefreshToken(token){
+    async setRefreshToken(token) {
         await AsyncStorage.setItem(ENV.JWT.REFRESH, token)
     }
 
-    async getRefreshToken(){
+    async getRefreshToken() {
         return await AsyncStorage.getItem(ENV.JWT.REFRESH)
     }
 
-    async removeTokens(){
+    async removeTokens() {
         await AsyncStorage.removeItem(ENV.JWT.ACCESS)
         await AsyncStorage.removeItem(ENV.JWT.REFRESH)
     }

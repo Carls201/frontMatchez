@@ -15,7 +15,6 @@ export function SettingsNavigation() {
             <Stack.Screen
                 name={screens.tab.settings.settingsScreen}
                 component={SettingsScreen}
-                options={{ headerShown: false }}
             />
             <Stack.Screen
                 name={screens.tab.settings.changeFirstnameScreen}
