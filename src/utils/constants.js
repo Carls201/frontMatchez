@@ -1,4 +1,4 @@
-let miIp = "192.168.1.100"
+let miIp = "192.168.0.2"//192.168.1.100
 const SERVER_IP = `${miIp}:3977`
 
 export const ENV = {
