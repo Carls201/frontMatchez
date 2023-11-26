@@ -36,16 +36,6 @@ export function AuthStartScreen() {
                 Al ingresar aceptas nuestro Condiciones de uso y Política de privacidad
             </Text>
 
-            {/* <View>
-                <Text style={styles.title}>Bienvenido a</Text>
-                <Text style={styles.matchez}>MatchEz</Text>
-            </View>
-
-            <View>
-                <Text style={styles.btn} onPress={goToLogin}>Aceptar terminos y continuar</Text>
-                <Button>hola</Button>
-            </View> */}
-
         </View>
     )
 }
