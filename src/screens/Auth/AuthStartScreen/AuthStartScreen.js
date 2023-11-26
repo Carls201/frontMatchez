@@ -1,4 +1,4 @@
-import { SafeAreaView, Image, View, Text } from "react-native"
+import { SafeAreaView, Image, View, Text, Button, TouchableOpacity } from "react-native"
 import { useNavigation } from "@react-navigation/native"
 import { screens } from "../../../utils"
 import { assets } from "../../../assets"
@@ -12,13 +12,40 @@ export function AuthStartScreen() {
     }
     
     return (
-        <SafeAreaView style={styles.content}>
-            <Image source = {assets.image.jpg.auth01} style={styles.image}/>
+        <View style={styles.container}>
+
+            <View style={styles.logoContainer}>
+                <Image source = {assets.image.jpg.auth01} style={styles.image}/>
+            </View>
+
+            <View style={styles.contentTitle}>
+                <Text style={styles.title}>Bienvenido a</Text>
+                <Text style={styles.matchez}>MatchEz</Text>
+            </View>
+
+            <View style={styles.buttonContainer}>
+                <TouchableOpacity onPress={goToLogin} style={styles.button1}>
+                <Text style={styles.buttonText1}>INICIAR SESIÓN</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.button2}>
+                <Text style={styles.buttonText2}>REGISTRASE</Text>
+                </TouchableOpacity>
+            </View>
+
+            <Text style={styles.footerText}>
+                Al ingresar aceptas nuestro Condiciones de uso y Política de privacidad
+            </Text>
+
+            {/* <View>
+                <Text style={styles.title}>Bienvenido a</Text>
+                <Text style={styles.matchez}>MatchEz</Text>
+            </View>
 
             <View>
-                <Text style={styles.title}>Bienvenido a MatchEz</Text>
                 <Text style={styles.btn} onPress={goToLogin}>Aceptar terminos y continuar</Text>
-            </View>
-        </SafeAreaView>
+                <Button>hola</Button>
+            </View> */}
+
+        </View>
     )
 }

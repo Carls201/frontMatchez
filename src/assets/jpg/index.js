@@ -1,4 +1,4 @@
-import auth01 from "./auth-01.jpg"
+import auth01 from "./logoestesi.png"
 
 export const jpg = {
     auth01
