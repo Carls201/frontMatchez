@@ -1,23 +1,26 @@
-import { View, Text } from "react-native"
-import { useNavigation } from "@react-navigation/native"
-import { screens } from "../../../utils"
-import { LoginForm } from "../../../components/Auth"
-import { styles } from './LoginScreen.styles'
+import { View, Text, Image } from "react-native";
+import { LoginForm } from "../../../components/Auth";
+import { styles } from './LoginScreen.styles';
+import { assets } from '../../../assets';
 
 export function LoginScreen() {
-    const navigation = useNavigation();
 
-    const goToRegister = () => {
-        navigation.navigate(screens.auth.registroScreen)
-    }
+    
 
     return (
         <View style={styles.content}>
-            <Text style={styles.title}>Iniciar sesión</Text>
+
+            <View style={styles.logoContainer}>
+                <Image source = {assets.image.jpg.auth01} style={styles.image}/>
+            </View>
+
+            <View style={styles.contentTitle}>
+                <Text style={styles.title}>Iniciar <Text style={styles.matchez}>sesión</Text></Text>
+            </View>
+
 
             <LoginForm/>
 
-            <Text style={styles.register} onPress={goToRegister}>Registrarse</Text>
         </View>
     )
 }

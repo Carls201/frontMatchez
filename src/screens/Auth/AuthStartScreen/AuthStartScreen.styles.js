@@ -1,5 +1,8 @@
 import { Container } from 'native-base';
 import { StyleSheet } from 'react-native'
+import { assets } from '../../../assets';
+
+const { backColor1, backColor2, textColor1, textColor2, mainColor, orangeColor } = assets.colors;
 
 export const styles = new StyleSheet.create({
     
@@ -9,7 +12,7 @@ export const styles = new StyleSheet.create({
     },
     container: {
         flex: 1,
-        backgroundColor: '#1B1B1B', // Assuming the background is black
+        backgroundColor: backColor2,
         alignItems: 'center',
         justifyContent: 'center',
       },
@@ -20,45 +23,43 @@ export const styles = new StyleSheet.create({
         width: '80%',
       },
       button1: {
-        backgroundColor: '#FBFBFA', // Assuming the buttons are white
+        backgroundColor: textColor1, 
         padding: 15,
         borderRadius: 5,
         alignItems: 'center',
         marginBottom: 35,
       },
       button2: {
-        backgroundColor: '#2D3435', // Assuming the buttons are white
+        backgroundColor: backColor1, 
         padding: 15,
         borderRadius: 5,
         alignItems: 'center',
         marginBottom: 10,
       },
       buttonText1: {
-        color: '#1B1B1B', // Assuming the button text is black
-        // Add your font styling here
+        color: backColor1,
       },
       buttonText2: {
-        color: '#FBFBFA', // Assuming the button text is black
-        // Add your font styling here
+        color: textColor1,
+        
       },
       footerText: {
-        color: '#ABB6B0', // Assuming the footer text is white
+        color: textColor2,
         textAlign: 'center',
         marginTop: 30,
         paddingHorizontal: 20,
-        // Add your font styling here
       },
       contentTitle: {
         justifyContent: 'center',
         marginBottom: 40
       },
       title: {
-        color: '#FBFBFA',
+        color: textColor1,
         textAlign: 'center',
         fontSize: 30
       },
       matchez: {
-        color: '#F34C55',
+        color: mainColor,
         textAlign: 'center',
         fontSize: 30,
         fontWeight: 'bold'
