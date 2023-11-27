@@ -8,7 +8,11 @@ export function AuthStartScreen() {
     const navigation = useNavigation();
 
     const goToLogin = () => {
-        navigation.navigate(screens.auth.loginScreen)
+        navigation.navigate(screens.auth.loginScreen);
+    }
+
+    const goToRegister = () => {
+        navigation.navigate(screens.auth.registroScreen);
     }
     
     return (
@@ -27,7 +31,7 @@ export function AuthStartScreen() {
                 <TouchableOpacity onPress={goToLogin} style={styles.button1}>
                 <Text style={styles.buttonText1}>INICIAR SESIÓN</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.button2}>
+                <TouchableOpacity style={styles.button2} onPress={goToRegister}>
                 <Text style={styles.buttonText2}>REGISTRASE</Text>
                 </TouchableOpacity>
             </View>
