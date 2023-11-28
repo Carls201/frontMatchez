@@ -1,4 +1,4 @@
-import { View, Text } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 import { Input, Backdrop, Button } from "native-base"
 import { useFormik } from "formik";
 import { Auth } from "../../../api";
@@ -32,7 +32,7 @@ export function LoginForm() {
     })
 
     return (
-        <View>
+        <View style={styles.content}>
             <View style={styles.viewInput}>
                 <Input
                     placeholder="Correo electrónico"
@@ -52,8 +52,11 @@ export function LoginForm() {
                 onChangeText={(text) => formik.setFieldValue("password", text)}
                 style={[styles.input, formik.errors.password && styles.inputError]}
             />
-
-            <Button onPress={formik.handleSubmit} isLoading={formik.isSubmitting} style={styles.btn}>Ingresar</Button>
+            
+            <TouchableOpacity onPress={formik.handleSubmit} isLoading={formik.isSubmitting} style={styles.btn}>
+                <Text style={styles.textBtn}>Ingresar</Text>
+            </TouchableOpacity>
+            {/* <Button onPress={formik.handleSubmit} isLoading={formik.isSubmitting} style={styles.btn}>Ingresar</Button> */}
         </View>
     )
 }
