@@ -12,6 +12,7 @@ export class Auth {
                 },
                 body: JSON.stringify({ nick, correo, password, id_rol })
             }
+
             const response = await fetch(url, params);
             const result = await response.json();
 

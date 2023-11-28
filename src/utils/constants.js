@@ -12,11 +12,15 @@ export const ENV = {
             LOGIN: "auth/login",
             REFRESH_ACCESS_TOKEN: "auth/refresh_access_token",
         },
-        ME: "usuario/me"
+        ME: "usuario/me",
+        PROFILE: {
+            COMPLETAR: "perfil/completar",
+            ME: "perfil/me",
+            BUSCAR: "perfiles/nick/",
+        }
     },
     JWT: {
         ACCESS: "access",
         REFRESH: "refresh"
     }
-
 }

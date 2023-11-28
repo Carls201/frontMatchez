@@ -1,14 +1,15 @@
 import React from 'react'
-import { SafeAreaView, View, Text } from 'react-native'
-import { Button } from "native-base"
+import { SafeAreaView } from 'react-native'
 import { useAuth } from "../../hooks"
+import { UserInfo, Options } from '../../components/Settings'
 
 export function SettingsScreen() {
-    const { logout } = useAuth()
+    const { profile, user, accessToken, logout, updateUser, updateProfile } = useAuth()
+    // console.log(user)
     return (
         <SafeAreaView>
-            <Text>SettingsScreen</Text>
-            <Button onPress={logout}>Cerrar sesión</Button>
+            <UserInfo profile={profile} user={user.data} />
+            <Options profile={profile} user={user.data} accessToken={accessToken} logout={logout} updateUser={updateUser} updateProfile={updateProfile}/>
         </SafeAreaView>
     )
 }

@@ -10,6 +10,7 @@ export const AuthContext = createContext();
 export function AuthProvider(props) {
     const { children } = props;
     const [user, setUser] = useState(null);
+    const [profile, setProfile] = useState(null);
     const [token, setToken] = useState(null);
     const [loading, setLoading] = useState(true);
 
@@ -53,6 +54,15 @@ export function AuthProvider(props) {
         try {
             setLoading(true)
             const response = await userController.getMe(accessToken)
+            const resProfile = await userController.getProfile(accessToken, response)
+            let cosa
+            if(resProfile.data !== null){
+                cosa = resProfile
+            }else{
+                const crearProfile = await userController.crearProfile(accessToken)
+                cosa = crearProfile
+            }
+            setProfile(cosa)
             setUser(response)
             setToken(accessToken)
             setLoading(false)
@@ -65,9 +75,18 @@ export function AuthProvider(props) {
 
     const logout = () => {
         setUser(null)
+        setProfile(null)
         setToken(null)
         authController.removeTokens()
     };
+
+    const updateProfile = (key, value) => {
+        setProfile({
+            ...profile,
+            [key]: value,
+        })
+        console.log(profile)
+    }
 
     const updateUser = (key, value) => {
         setUser({
@@ -79,9 +98,11 @@ export function AuthProvider(props) {
     const data = {
         accessToken: token,
         user,
+        profile,
         login,
         logout,
-        updateUser
+        updateUser,
+        updateProfile,
     };
 
     if (loading) return null;
