@@ -1,10 +1,12 @@
 import { StyleSheet } from "react-native"
+import { assets } from "../assets"
 
+const { backColor1, backColor2 } = assets.colors;
 export const styles = new StyleSheet.create(
     {
         stackNavigationStyles: {
             contentStyle: {
-                backgroundColor: "#000",
+                backgroundColor: backColor2,
             },
             headerStyle: {
                 backgroundColor: "#000"

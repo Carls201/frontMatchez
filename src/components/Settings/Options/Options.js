@@ -25,8 +25,9 @@ export function Options(props){
 
     const updateUserData = async (userData) => {
         try {
-            const response = await userController.updateUser(user, accessToken, userData)
-            updateProfile("foto", response.data.foto)
+            console.log(userData);
+            await userController.updateUser(user, accessToken, userData)
+            // updateProfile("foto", response.data.foto)
         } catch (error) {
             console.error(error)
         }

@@ -12,7 +12,7 @@ export function UserInfo(props) {
                 marginRight={3}
                 size="xl"
                 style={styles.avatar}
-                source={{ uri: profile.data.foto && `${ENV.BASE_PATH}/${profile.data.foto}`}}
+                source={{ uri: profile.data.foto? `${ENV.BASE_PATH}/${profile.data.foto}`: `${ENV.BASE_PATH}/avatar/defaultProfile.png`}}
             >
                 {user.correo.substring(0, 2).toUpperCase()}
             </Avatar>

@@ -15,10 +15,20 @@ const global = {
     changeNameGroupScreen: "ChangeNameGroupScreen",
 };
 
+const home = {
+    root: "HomeRoot",
+    homeScreen: "HomeScreen",
+}
+
 const chats = {
     root: "ChatsRoot",
     chatsScreen: "ChatsScreen",
     createChatScreen: "CreateChatScreen",
+}
+
+const createSala = {
+    root: "CreateSalaRoot",
+    createSalaScreen: "Crear Sala"
 }
 
 const groups = {
@@ -34,13 +44,21 @@ const settings = {
     changeLastnameScreen: "ChangeLastnameScreen",
 }
 
+const createProfile = {
+    root: "CreateProfile",
+    createProfileScreen: "CreateProfileScreen"
+}
+
 export const screens = {
     auth,
     global,
     tab: {
         root: "BottonTabRoot",
+        home,
         chats,
         groups,
         settings,
+        createProfile,
+        createSala,
     }
 }

@@ -1,9 +1,11 @@
 import { useState, useEffect, createContext } from "react"
-import { User, Auth } from "../api";
+import { User, Auth, Perfil, Deporte } from "../api";
 import { hasExpiredToken } from "../utils";
 
 const userController = new User();
 const authController = new Auth();
+const perfilController = new Perfil();
+const deporteController = new Deporte();
 
 export const AuthContext = createContext();
 
@@ -13,6 +15,10 @@ export function AuthProvider(props) {
     const [profile, setProfile] = useState(null);
     const [token, setToken] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [deportes, setDeportes] = useState(null);
+
+    const [perfill, setPerfil] = useState(null);
+    const [perfilAux, setPerfilAux] = useState(null);
 
     useEffect(() => {
         (async () => {
@@ -55,14 +61,8 @@ export function AuthProvider(props) {
             setLoading(true)
             const response = await userController.getMe(accessToken)
             const resProfile = await userController.getProfile(accessToken, response)
-            let cosa
-            if(resProfile.data !== null){
-                cosa = resProfile
-            }else{
-                const crearProfile = await userController.crearProfile(accessToken)
-                cosa = crearProfile
-            }
-            setProfile(cosa)
+
+            setProfile(resProfile)
             setUser(response)
             setToken(accessToken)
             setLoading(false)
@@ -73,10 +73,30 @@ export function AuthProvider(props) {
         }
     };
 
+    const perfil = async (accessToken) => {
+        const response = await perfilController.getProfileByIdUser(accessToken);
+        // console.log(response);
+        setPerfil(response);
+        
+    }
+
+    const crearPerfil = async (accessToken, data) => {
+        const response = await perfilController.createPerfil(accessToken, data);
+        setPerfilAux(response);
+    }
+
+    // Buscar Deportes
+    const getDeportes = async (accessToken) => {
+        const response = await deporteController.getDeportes(accessToken);
+        setDeportes(response);
+    }
+
     const logout = () => {
-        setUser(null)
-        setProfile(null)
-        setToken(null)
+        setUser(null);
+        setProfile(null);
+        setToken(null);
+        setPerfilAux(null);
+        setPerfil(null);
         authController.removeTokens()
     };
 
@@ -95,6 +115,7 @@ export function AuthProvider(props) {
         })
     }
 
+
     const data = {
         accessToken: token,
         user,
@@ -103,9 +124,16 @@ export function AuthProvider(props) {
         logout,
         updateUser,
         updateProfile,
+        perfill,
+        perfilAux,
+        crearPerfil,
+        perfil,
+        getDeportes,
+        deportes
     };
 
     if (loading) return null;
+
 
     return <AuthContext.Provider value={data}>{children}</AuthContext.Provider>;
 }

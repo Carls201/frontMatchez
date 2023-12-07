@@ -1,11 +1,26 @@
-import React from "react";
-import { AuthNavigation } from "./stacks"
-import { AppNavigation } from "./AppNavigation"
-import { useAuth } from "../hooks"
+import React, { useEffect } from "react";
+import { AuthNavigation } from "./stacks";
+import { AppNavigation } from "./AppNavigation";
+import { CreateProfileNavigation } from "./stacks";
+import { useAuth } from "../hooks";
 
-export function HandlerNavigation(){
-    const { user } = useAuth();
-    //const user = "juan";
+export function HandlerNavigation() {
+    const { accessToken, login, perfil, perfill, perfilAux, user } = useAuth();
 
-    return user ? <AppNavigation/> : <AuthNavigation/>
+    // console.log(perfill);
+    useEffect(() => {
+        if (accessToken) {
+            perfil(accessToken); 
+        }
+    }, [perfilAux]);
+
+    if (!accessToken) {
+        return <AuthNavigation />;//
+    }
+
+    if (!perfill || !perfill.data) {
+        return <CreateProfileNavigation />;
+    }
+
+    return <AppNavigation />;
 }

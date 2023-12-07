@@ -20,30 +20,16 @@ export class User {
         }
     }
 
-    async updateUser(user, accessToken, userData) {
-        const urlPerfil = `${ENV.API_URL}/${ENV.ENDPOINTS.PROFILE.BUSCAR}` + user.nick
-        const perfilParams = {
-            method: "GET",
-            headers: {
-                "Authorization": `Bearer ${accessToken}`,
-                "Content-Type": "application/json"
-            }
-        }
-        const exist = await fetch(urlPerfil, perfilParams)
-        const res = await exist.json()
+    async updateUser(accessToken, userData) {
         try {
-
-            // console.log(res)
-
-            const method = "POST" ? "PATCH" : res.data !== null
-            const data = userData
+            
             const formData = new FormData()
-            Object.keys(data).forEach((key) => {
-                formData.append(key, data[key])
+            Object.keys(userData).forEach((key) => {
+                formData.append(key, userData[key])
             })
-            const url = `${ENV.API_URL}/${ENV.ENDPOINTS.PROFILE.COMPLETAR}` ? `${ENV.API_URL}/${ENV.ENDPOINTS.PROFILE.ME}` : res.data !== null
+            const url = `${ENV.API_URL}/${ENV.ENDPOINTS.PROFILE.ME}`
             const params = {
-                method: method,
+                method: "PATCH",
                 headers: {
                     "Authorization": `Bearer ${accessToken}`,
                 },
@@ -52,7 +38,6 @@ export class User {
 
             const response = await fetch(url, params);
             const result = await response.json();
-            if (response.status !== 200) throw result;
 
             return result;
         } catch (error) {
@@ -69,7 +54,7 @@ export class User {
                 }
             }
             const response = await fetch(url, params);
-            const result = await response.json();;
+            const result = await response.json();
 
             return result;
         } catch (error) {
